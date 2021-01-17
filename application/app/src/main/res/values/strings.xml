@@ -4,4 +4,6 @@
     <string name="addOneDescription">Increase 1</string>
     <string name="delOneDesc">Remove 1</string>
     <string name="reset">Reset Counting</string>
+    <string name="defaultNumber">0</string>
+    <string name="startCounting">0</string>
 </resources>

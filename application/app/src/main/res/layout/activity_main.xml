@@ -7,6 +7,39 @@
     android:background="@color/grey"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/ResetButton"
+        android:layout_width="178dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="140dp"
+        android:backgroundTint="@color/black"
+        android:onClick="reset"
+        android:text="@string/reset"
+        app:layout_constraintBottom_toTopOf="@+id/countingField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/delOneButton"
+        android:layout_width="53dp"
+        android:layout_height="190dp"
+        android:clickable="true"
+        android:contentDescription="@string/delOneDesc"
+        android:focusable="true"
+        android:onClick="decreaseOne"
+        app:backgroundTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="@+id/addOneButton"
+        app:layout_constraintEnd_toStartOf="@+id/addOneButton"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addOneButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_delete"
+        app:tint="@color/white" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addOneButton"
         android:layout_width="wrap_content"
@@ -16,43 +49,29 @@
         android:clickable="true"
         android:contentDescription="@string/addOneDescription"
         android:focusable="true"
+        android:onClick="increaseOne"
         app:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.650"
+        app:layout_constraintHorizontal_bias="0.639"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="@color/white" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/delOneButton"
-        android:layout_width="53dp"
-        android:layout_height="190dp"
-        android:clickable="true"
-        android:contentDescription="@string/delOneDesc"
-        android:focusable="true"
-        app:backgroundTint="@color/red"
-        app:layout_constraintBottom_toBottomOf="@+id/addOneButton"
-        app:layout_constraintEnd_toStartOf="@+id/addOneButton"
-        app:layout_constraintHorizontal_bias="0.627"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addOneButton"
-        app:layout_constraintVertical_bias="0.719"
-        app:srcCompat="@android:drawable/ic_delete"
-        app:tint="@color/white" />
-
-    <Button
-        android:id="@+id/ResetButton"
-        android:layout_width="178dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/black"
-        android:text="@string/reset"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/countingField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="112dp"
+        android:width="150dp"
+        android:height="100dp"
+        android:gravity="center"
+        android:text="@string/startCounting"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/addOneButton"
         app:layout_constraintEnd_toEndOf="@+id/addOneButton"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/delOneButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.273" />
+        app:layout_constraintStart_toStartOf="@+id/delOneButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
