@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val settings :FloatingActionButton = findViewById(R.id.settingsButton)
         settings.setOnClickListener{
-            val intent = Intent(this, SettingsActivity::class.java)
+            val intent = Intent(this, ConfigurationActivity::class.java)
             startActivity(intent)
         }
     }
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 0
         )
         val editor :SharedPreferences.Editor = preferences.edit()
-        editor.putString("counting", counting)
+        editor.putString(Configuration.STORED_COUNTING, counting)
         editor.commit()
     }
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 0
         )
         return preferences.getString(
-                "counting",
+                Configuration.STORED_COUNTING,
                 getString(R.string.startCounting)
         )
     }

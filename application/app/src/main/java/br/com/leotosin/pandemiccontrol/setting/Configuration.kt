@@ -4,4 +4,5 @@ object Configuration
 {
 
     const val CONFIG_FILE = "PandemicPreferences"
+    const val STORED_COUNTING = "counting"
 }
