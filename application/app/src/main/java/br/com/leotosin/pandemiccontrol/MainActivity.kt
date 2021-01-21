@@ -28,6 +28,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRestart()
+    {
+        super.onRestart()
+
+        val counter : TextView = findViewById(R.id.countingField)
+        val counting = this.getStoredCounting()
+        counter.text = counting
+    }
+
     fun increaseOne(view: View)
     {
         val counter : TextView = findViewById(R.id.countingField)
@@ -74,5 +83,4 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.startCounting)
         )
     }
-
 }
