@@ -68,7 +68,7 @@ class ConfigurationActivity : AppCompatActivity() {
         )
         val editor : SharedPreferences.Editor = preferences.edit()
         editor.putString(Configuration.STORED_COUNTING, counting)
-        editor.commit()
+        editor.apply()
     }
 
     private fun updateLimit(limit :String)
@@ -79,7 +79,7 @@ class ConfigurationActivity : AppCompatActivity() {
         )
         val editor : SharedPreferences.Editor = preferences.edit()
         editor.putString(Configuration.LIMIT_COUNTING, limit)
-        editor.commit()
+        editor.apply()
     }
 
     private fun getStoredCounting() :String?
@@ -118,7 +118,7 @@ class ConfigurationActivity : AppCompatActivity() {
 
     private fun isNegative(counting: String) :Boolean
     {
-        if (counting.toInt() < 0)
+        if (counting.toInt() <= 0)
         {
             return true
         }

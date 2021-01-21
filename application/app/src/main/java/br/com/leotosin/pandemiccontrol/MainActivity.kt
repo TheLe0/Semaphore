@@ -2,10 +2,13 @@ package br.com.leotosin.pandemiccontrol
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.core.view.ViewCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 import br.com.leotosin.pandemiccontrol.setting.Configuration
@@ -26,23 +29,39 @@ class MainActivity : AppCompatActivity() {
         {
             increaseButton.isEnabled = false
             increaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
         }
         else
         {
             increaseButton.isEnabled = true
             increaseButton.isClickable = true
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.green))
+            )
         }
 
         val decreaseButton :FloatingActionButton = findViewById(R.id.delOneButton)
-        if (this.isNegative(counting!!))
+        if (this.isNegative(counting))
         {
             decreaseButton.isEnabled = false
             decreaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
         }
         else
         {
             decreaseButton.isEnabled = true
             decreaseButton.isClickable = true
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.red))
+            )
         }
 
         val settings :FloatingActionButton = findViewById(R.id.settingsButton)
@@ -65,23 +84,39 @@ class MainActivity : AppCompatActivity() {
         {
             increaseButton.isEnabled = false
             increaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
         }
         else
         {
             increaseButton.isEnabled = true
             increaseButton.isClickable = true
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.green))
+            )
         }
 
         val decreaseButton :FloatingActionButton = findViewById(R.id.delOneButton)
-        if (this.isNegative(counting!!))
+        if (this.isNegative(counting))
         {
             decreaseButton.isEnabled = false
             decreaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
         }
         else
         {
             decreaseButton.isEnabled = true
             decreaseButton.isClickable = true
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.red))
+            )
         }
     }
 
@@ -93,22 +128,34 @@ class MainActivity : AppCompatActivity() {
         this.updateCounting(counting)
 
         val increaseButton :FloatingActionButton = findViewById(R.id.addOneButton)
-        if (this.outOfBounds(counting!!))
+        if (this.outOfBounds(counting))
         {
             increaseButton.isEnabled = false
             increaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
         }
 
         val decreaseButton :FloatingActionButton = findViewById(R.id.delOneButton)
-        if (this.isNegative(counting!!))
+        if (this.isNegative(counting))
         {
             decreaseButton.isEnabled = false
             decreaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
         }
         else
         {
             decreaseButton.isEnabled = true
             decreaseButton.isClickable = true
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.red))
+            )
         }
     }
 
@@ -120,10 +167,14 @@ class MainActivity : AppCompatActivity() {
         this.updateCounting(counting)
 
         val increaseButton :FloatingActionButton = findViewById(R.id.addOneButton)
-        if (!this.outOfBounds(counting!!))
+        if (!this.outOfBounds(counting))
         {
             increaseButton.isEnabled = true
             increaseButton.isClickable = true
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.green))
+            )
         }
 
         val decreaseButton :FloatingActionButton = findViewById(R.id.delOneButton)
@@ -131,11 +182,19 @@ class MainActivity : AppCompatActivity() {
         {
             decreaseButton.isEnabled = false
             decreaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
         }
         else
         {
             decreaseButton.isEnabled = true
             decreaseButton.isClickable = true
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.red))
+            )
         }
     }
 
@@ -147,7 +206,7 @@ class MainActivity : AppCompatActivity() {
         )
         val editor :SharedPreferences.Editor = preferences.edit()
         editor.putString(Configuration.STORED_COUNTING, counting)
-        editor.commit()
+        editor.apply()
     }
 
     private fun getStoredCounting() :String?
@@ -186,7 +245,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun isNegative(counting: String) :Boolean
     {
-        if (counting.toInt() < 0)
+        if (counting.toInt() <= 0)
         {
             return true
         }
