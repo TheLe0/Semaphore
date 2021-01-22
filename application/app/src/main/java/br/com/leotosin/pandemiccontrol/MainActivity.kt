@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         val increaseButton :FloatingActionButton = findViewById(R.id.addOneButton)
         if (this.outOfBounds(counting!!))
         {
+            counter.setTextColor(getColor(R.color.red))
             increaseButton.isEnabled = false
             increaseButton.isClickable = false
             ViewCompat.setBackgroundTintList(
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
         else
         {
+            counter.setTextColor(getColor(R.color.green))
             increaseButton.isEnabled = true
             increaseButton.isClickable = true
             ViewCompat.setBackgroundTintList(
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity() {
                     decreaseButton,
                     ColorStateList.valueOf(getColor(R.color.red))
             )
+            counter.setTextColor(getColor(R.color.green))
         }
 
         val settings :FloatingActionButton = findViewById(R.id.settingsButton)
@@ -82,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         val increaseButton :FloatingActionButton = findViewById(R.id.addOneButton)
         if (this.outOfBounds(counting!!))
         {
+            counter.setTextColor(getColor(R.color.red))
             increaseButton.isEnabled = false
             increaseButton.isClickable = false
             ViewCompat.setBackgroundTintList(
@@ -91,6 +95,7 @@ class MainActivity : AppCompatActivity() {
         }
         else
         {
+            counter.setTextColor(getColor(R.color.green))
             increaseButton.isEnabled = true
             increaseButton.isClickable = true
             ViewCompat.setBackgroundTintList(
@@ -130,6 +135,7 @@ class MainActivity : AppCompatActivity() {
         val increaseButton :FloatingActionButton = findViewById(R.id.addOneButton)
         if (this.outOfBounds(counting))
         {
+            counter.setTextColor(getColor(R.color.red))
             increaseButton.isEnabled = false
             increaseButton.isClickable = false
             ViewCompat.setBackgroundTintList(
@@ -169,6 +175,7 @@ class MainActivity : AppCompatActivity() {
         val increaseButton :FloatingActionButton = findViewById(R.id.addOneButton)
         if (!this.outOfBounds(counting))
         {
+            counter.setTextColor(getColor(R.color.green))
             increaseButton.isEnabled = true
             increaseButton.isClickable = true
             ViewCompat.setBackgroundTintList(

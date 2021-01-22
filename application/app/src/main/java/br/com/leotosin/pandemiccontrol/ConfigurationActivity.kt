@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +39,9 @@ class ConfigurationActivity : AppCompatActivity() {
             radioPercent.isChecked = false
             radioUnit.isChecked = true
         }
+
+        val block :TextView = findViewById(R.id.blockNumber)
+        block.text = this.getNumBlock()
     }
 
     fun save(view : View)
@@ -61,6 +63,11 @@ class ConfigurationActivity : AppCompatActivity() {
         val type :Int = if (radioPercent.isChecked) R.id.percentType else R.id.unitType
 
         this.updateTypeCounting(type.toString())
+
+        val numBlock :TextView = findViewById(R.id.blockNumber)
+        val block = numBlock.text.toString()
+
+        this.updateNumBlock(block, type.toString())
     }
 
     fun reset(view: View)
@@ -80,6 +87,18 @@ class ConfigurationActivity : AppCompatActivity() {
         return preferences.getString(
                 Configuration.LIMIT_COUNTING,
                 getString(R.string.startCounting)
+        )
+    }
+
+    private fun getNumBlock() :String?
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+                Configuration.CONFIG_FILE,
+                0
+        )
+        return preferences.getString(
+                Configuration.NUM_BLOCK,
+                this.getLimit()
         )
     }
 
@@ -115,6 +134,74 @@ class ConfigurationActivity : AppCompatActivity() {
         val editor : SharedPreferences.Editor = preferences.edit()
         editor.putString(Configuration.TYPE_LIMIT, type)
         editor.apply()
+    }
+
+    private fun verifyNumBlock(numBlock :String, type :String) :Boolean
+    {
+        when (type.toInt())
+        {
+            R.id.unitType ->
+            {
+                if (numBlock.toInt() !in 0..this.getLimit()?.toInt()!!)
+                {
+                    return false
+                }
+            }
+            R.id.percentType ->
+            {
+                if (numBlock.toInt() !in 0..100)
+                {
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
+
+    private fun updateNumBlock(numBlock :String, type :String)
+    {
+
+        if (this.verifyNumBlock(numBlock, type))
+        {
+            val preferences : SharedPreferences = getSharedPreferences(
+                    Configuration.CONFIG_FILE,
+                    0
+            )
+            val editor : SharedPreferences.Editor = preferences.edit()
+            editor.putString(Configuration.NUM_BLOCK, numBlock)
+            editor.apply()
+        }
+        else
+        {
+            this.adaptNumBlock(numBlock, type)
+        }
+    }
+
+    private fun adaptNumBlock(numBlock :String, type :String)
+    {
+        val limit = this.getLimit()
+        var blockValue = numBlock
+
+        when (type.toInt())
+        {
+            R.id.unitType ->
+            {
+                if (limit != null)
+                {
+                    blockValue = ((blockValue.toInt()/100)*limit.toInt()).toString()
+                }
+            }
+            R.id.percentType ->
+            {
+                if (limit != null)
+                {
+                    blockValue = ((blockValue.toInt()*100)/limit.toInt()).toString()
+                }
+            }
+        }
+
+        this.updateNumBlock(blockValue, type)
     }
 
     private fun getTypeCounting() :String?

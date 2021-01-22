@@ -7,4 +7,5 @@ object Configuration
     const val STORED_COUNTING = "counting"
     const val LIMIT_COUNTING = "limit"
     const val TYPE_LIMIT = "type"
+    const val NUM_BLOCK = "numBlock"
 }
