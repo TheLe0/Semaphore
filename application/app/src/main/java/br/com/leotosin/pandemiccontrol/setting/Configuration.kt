@@ -6,4 +6,5 @@ object Configuration
     const val CONFIG_FILE = "PandemicPreferences"
     const val STORED_COUNTING = "counting"
     const val LIMIT_COUNTING = "limit"
+    const val TYPE_LIMIT = "type"
 }

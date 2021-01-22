@@ -3,6 +3,8 @@ package br.com.leotosin.pandemiccontrol
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,21 @@ class ConfigurationActivity : AppCompatActivity() {
         val limit :TextView = findViewById(R.id.limitCounting)
         val limitCounting = this.getLimit()
         limit.text = limitCounting
+
+        val type :Int = this.getTypeCounting()?.toInt()!!
+        val radioPercent :RadioButton = findViewById(R.id.percentType)
+        val radioUnit :RadioButton = findViewById(R.id.unitType)
+
+        if (type == R.id.percentType)
+        {
+            radioPercent.isChecked = true
+            radioUnit.isChecked = false
+        }
+        else
+        {
+            radioPercent.isChecked = false
+            radioUnit.isChecked = true
+        }
     }
 
     fun save(view : View)
@@ -34,10 +51,16 @@ class ConfigurationActivity : AppCompatActivity() {
         val counter : TextView = findViewById(R.id.currentCounting)
         val counting = counter.text.toString()
 
-        if (!this.outOfBounds(counting!!) and !this.isNegative(counting!!))
+        if (!this.outOfBounds(counting) and !this.isNegative(counting))
         {
             this.updateCounting(counting)
         }
+
+        val radioPercent :RadioButton = findViewById(R.id.percentType)
+
+        val type :Int = if (radioPercent.isChecked) R.id.percentType else R.id.unitType
+
+        this.updateTypeCounting(type.toString())
     }
 
     fun reset(view: View)
@@ -66,6 +89,7 @@ class ConfigurationActivity : AppCompatActivity() {
                 Configuration.CONFIG_FILE,
                 0
         )
+
         val editor : SharedPreferences.Editor = preferences.edit()
         editor.putString(Configuration.STORED_COUNTING, counting)
         editor.apply()
@@ -80,6 +104,30 @@ class ConfigurationActivity : AppCompatActivity() {
         val editor : SharedPreferences.Editor = preferences.edit()
         editor.putString(Configuration.LIMIT_COUNTING, limit)
         editor.apply()
+    }
+
+    private fun updateTypeCounting(type :String)
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+            Configuration.CONFIG_FILE,
+            0
+        )
+        val editor : SharedPreferences.Editor = preferences.edit()
+        editor.putString(Configuration.TYPE_LIMIT, type)
+        editor.apply()
+    }
+
+    private fun getTypeCounting() :String?
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+            Configuration.CONFIG_FILE,
+            0
+        )
+
+        return preferences.getString(
+            Configuration.TYPE_LIMIT,
+            R.id.unitType.toString()
+        )
     }
 
     private fun getStoredCounting() :String?
