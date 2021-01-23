@@ -8,6 +8,5 @@ android:
   - build-tools-30.0.3
   - android-30
   - extra-google-google_play_services
-  - $ANDROID_TARGET
   - extra-google-m2repository
   - extra-android-m2repository
