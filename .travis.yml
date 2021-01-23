@@ -3,8 +3,6 @@ dist: xenial
 os: linux
 jdk: 
   - openjdk15
-  - oraclejdk8
-  - oraclejdk15 
 env:
  global:
     - ANDROID_API_LEVEL=30
@@ -23,3 +21,7 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
+addons:
+  apt:
+    packages:
+      ant
