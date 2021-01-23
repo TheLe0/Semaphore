@@ -1,12 +1,32 @@
 language: android
-dist: trusty
-jdk: openjdk-15
+sudo: required
+jdk: 
+  - openjdk11
+  - openjdk14
+  - openjdk15
+  - oraclejdk11
+  - oraclejdk14
+  - oraclejdk15 
+env:
+ global:
+    - ANDROID_API_LEVEL=30
+    - ANDROID_BUILD_TOOLS_VERSION=30.0.3
 android:
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
   components:
-  - tools
-  - platform-tools
-  - build-tools-30.0.3
-  - android-30
-  - extra-google-google_play_services
-  - extra-google-m2repository
-  - extra-android-m2repository
+    - tools
+    - platform-tools
+    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+    - android-$ANDROID_API_LEVEL
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-$ANDROID_API_LEVEL
+before_script:
+    - mkdir -p "$ANDROID_HOME/licenses"
+    - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+script:
+    - ./gradlew build check
