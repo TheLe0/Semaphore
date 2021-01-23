@@ -29,3 +29,10 @@ This is where the user can configure what the users can do and the limits for th
 * Near the limit: Is the value about the metric above, based on the limit counting. This value don't block the buttons on the main activity, only turn the
 color to yellow as an advise;
 * Increase/Decrease button enabled: If the increase/decrease buttons are clickables by the user on the main. 
+
+## COUNTRIBUTING
+
+This app is very simple and the code may be a little coupled. This was my first Android app, build all by myself, I'm a little new to the Android and mobile in general development. So be free to contribute, give me advices and new ideas.
+The app is not distributed, can only be used local, by a single user. This is a new feature to be implemented as a future work.
+
+
