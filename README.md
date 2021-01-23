@@ -18,3 +18,14 @@ The main activity is where the user will increase and decrease the counting and 
 This is where the user can configure what the users can do and the limits for the counting
 
 ![Configs](./images/configs.png)
+
+
+### Elements
+
+* Reset Counting: Is for reset the counting to 0, to start over again;
+* Counting: Is the current counting, that you can see on the main, is editable if is needed to increase/decrease faster;
+* Limit Counting: The number limit of the couting, when gets to it, in the main activity the increase button is disabled;
+* Type Conting: Is for stipulate the metric on the field below, if is a fixed number (lower then the limit) or a percent of the limit;
+* Near the limit: Is the value about the metric above, based on the limit counting. This value don't block the buttons on the main activity, only turn the
+color to yellow as an advise;
+* Increase/Decrease button enabled: If the increase/decrease buttons are clickables by the user on the main. 
