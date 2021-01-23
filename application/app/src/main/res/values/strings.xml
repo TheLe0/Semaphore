@@ -16,6 +16,8 @@
     <string name="nearLimit">Near to the limit</string>
     <string name="labelObs">OBS: The field above is for be advised when the counting is near
     to the limit</string>
+    <string name="increaseSwitch">Increase button enabled</string>
+    <string name="decreaseSwitch">Decrease button enabled</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

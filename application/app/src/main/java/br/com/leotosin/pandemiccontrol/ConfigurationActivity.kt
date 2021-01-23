@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 import br.com.leotosin.pandemiccontrol.setting.Configuration
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class ConfigurationActivity : AppCompatActivity() {
 
@@ -42,6 +43,12 @@ class ConfigurationActivity : AppCompatActivity() {
 
         val block :TextView = findViewById(R.id.blockNumber)
         block.text = this.getNumBlock()
+
+        val incSwitch :SwitchMaterial = findViewById(R.id.increaseSwitch)
+        val decSwitch :SwitchMaterial = findViewById(R.id.decreaseSwitch)
+
+        incSwitch.isChecked = this.getIncreaseSwitch().toBoolean()
+        decSwitch.isChecked = this.getDecreaseSwitch().toBoolean()
     }
 
     fun save(view : View)
@@ -68,6 +75,12 @@ class ConfigurationActivity : AppCompatActivity() {
         val block = numBlock.text.toString()
 
         this.updateNumBlock(block, type.toString())
+
+        val incSwitch :SwitchMaterial = findViewById(R.id.increaseSwitch)
+        val decSwitch :SwitchMaterial = findViewById(R.id.decreaseSwitch)
+
+        this.updateIncreaseSwitch(incSwitch.isChecked.toString())
+        this.updateDecreaseSwitch(decSwitch.isChecked.toString())
     }
 
     fun reset(view: View)
@@ -133,6 +146,28 @@ class ConfigurationActivity : AppCompatActivity() {
         )
         val editor : SharedPreferences.Editor = preferences.edit()
         editor.putString(Configuration.TYPE_LIMIT, type)
+        editor.apply()
+    }
+
+    private fun updateIncreaseSwitch(switch :String)
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+                Configuration.CONFIG_FILE,
+                0
+        )
+        val editor : SharedPreferences.Editor = preferences.edit()
+        editor.putString(Configuration.INC_ON, switch)
+        editor.apply()
+    }
+
+    private fun updateDecreaseSwitch(switch :String)
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+                Configuration.CONFIG_FILE,
+                0
+        )
+        val editor : SharedPreferences.Editor = preferences.edit()
+        editor.putString(Configuration.DEC_ON, switch)
         editor.apply()
     }
 
@@ -238,6 +273,30 @@ class ConfigurationActivity : AppCompatActivity() {
         return preferences.getString(
                 Configuration.LIMIT_COUNTING,
                 getString(R.string.startCounting)
+        )
+    }
+
+    private fun getIncreaseSwitch() :String?
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+                Configuration.CONFIG_FILE,
+                0
+        )
+        return preferences.getString(
+                Configuration.INC_ON,
+                true.toString()
+        )
+    }
+
+    private fun getDecreaseSwitch() :String?
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+                Configuration.CONFIG_FILE,
+                0
+        )
+        return preferences.getString(
+                Configuration.DEC_ON,
+                true.toString()
         )
     }
 

@@ -8,4 +8,6 @@ object Configuration
     const val LIMIT_COUNTING = "limit"
     const val TYPE_LIMIT = "type"
     const val NUM_BLOCK = "numBlock"
+    const val INC_ON = "increaseOn"
+    const val DEC_ON = "decreaseOn"
 }

@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         counter.text = counting
 
-
         if (this.outOfBounds(counting!!))
         {
             counter.setTextColor(getColor(R.color.red))
@@ -73,6 +72,29 @@ class MainActivity : AppCompatActivity() {
             ViewCompat.setBackgroundTintList(
                     decreaseButton,
                     ColorStateList.valueOf(getColor(R.color.red))
+            )
+        }
+
+        val increaseSwitch = this.getIncreaseSwitch().toBoolean()
+        val decreaseSwitch = this.getDecreaseSwitch().toBoolean()
+
+        if (!increaseSwitch)
+        {
+            increaseButton.isEnabled = false
+            increaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
+        }
+
+        if (!decreaseSwitch)
+        {
+            decreaseButton.isEnabled = false
+            decreaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
             )
         }
 
@@ -115,7 +137,6 @@ class MainActivity : AppCompatActivity() {
                 counter.setTextColor(getColor(R.color.green))
             }
 
-
             increaseButton.isEnabled = true
             increaseButton.isClickable = true
             ViewCompat.setBackgroundTintList(
@@ -143,12 +164,35 @@ class MainActivity : AppCompatActivity() {
                     ColorStateList.valueOf(getColor(R.color.red))
             )
         }
+
+        val increaseSwitch = this.getIncreaseSwitch().toBoolean()
+        val decreaseSwitch = this.getDecreaseSwitch().toBoolean()
+
+        if (!increaseSwitch)
+        {
+            increaseButton.isEnabled = false
+            increaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    increaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
+        }
+
+        if (!decreaseSwitch)
+        {
+            decreaseButton.isEnabled = false
+            decreaseButton.isClickable = false
+            ViewCompat.setBackgroundTintList(
+                    decreaseButton,
+                    ColorStateList.valueOf(getColor(R.color.darkGrey))
+            )
+        }
     }
 
     fun increaseOne(view: View)
     {
 
-        val counter : TextView = findViewById(R.id.countingField)
+        val counter : TextView =  findViewById(R.id.countingField)
         val counting = (counter.text.toString().toInt() + 1).toString()
         val nearLimit = this.getLimitAlert().toInt()
 
@@ -296,6 +340,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         return result.toString()
+    }
+
+    private fun getIncreaseSwitch() :String?
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+                Configuration.CONFIG_FILE,
+                0
+        )
+        return preferences.getString(
+                Configuration.INC_ON,
+                true.toString()
+        )
+    }
+
+    private fun getDecreaseSwitch() :String?
+    {
+        val preferences : SharedPreferences = getSharedPreferences(
+                Configuration.CONFIG_FILE,
+                0
+        )
+        return preferences.getString(
+                Configuration.DEC_ON,
+                true.toString()
+        )
     }
 
     private fun updateCounting(counting :String)
