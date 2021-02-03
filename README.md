@@ -1,6 +1,6 @@
 # PandemicControlApp
 
-[![Android CI](https://github.com/TheLe0/PandemicControlApp/workflows/Android%20CI/badge.svgp)]((https://github.com/TheLe0/PandemicControlApp/actions)
+[![Android CI](https://github.com/TheLe0/PandemicControlApp/workflows/Android%20CI/badge.svg)]((https://github.com/TheLe0/PandemicControlApp/actions)
 
 This is a simple app for use on supermarkets, events, partys or others establishments during the pandemic, to control and know exactly how much people are inside, to
 prevent the virus to spread easily
